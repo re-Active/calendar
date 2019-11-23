@@ -1,13 +1,15 @@
 import React, { Component } from "react";
-import { TouchableOpacity, Text, View, StyleSheet, Image } from "react-native";
+import { TouchableOpacity, Text, View, StyleSheet} from "react-native";
 import { Actions } from "react-native-router-flux";
+import {
+  Button
+} from 'react-native-elements'
 import {
   Container,
   Content,
   Footer,
   FooterTab,
   DeckSwiper,
-  Button,
   Icon,
   Header,
   Body,
@@ -40,7 +42,21 @@ const Reward = () => {
           <Text style={styles.txt1}>신영훈님의 리워드는</Text>
           <Text style={styles.txt2}>30000 point입니다</Text>
         </Card>
-      
+        <Button
+  style={styles.bttn}
+  raised
+  icon={{name: 'loyalty'}}
+  title='더 강력해진 포인트 [더하러 가기!]' />
+          <Button
+  style={styles.bttn}
+  raised
+  icon={{name: 'loyalty'}}
+  title='더 편리해진 포인트 [쓰러 가기!]' />
+          <Button
+  style={styles.bttn}
+  raised
+  icon={{name: 'loyalty'}}
+  title='더 따뜻해진 포인트 [나누러 가기!]' />
       </Content>
 
       <Footer>
@@ -132,6 +148,10 @@ const styles = StyleSheet.create({
   switchLabel: {
     color: "dodgerblue",
     fontWeight: "bold"
+  },
+  bttn : {
+    marginBottom : 10,
+    
   }
 });
 export default Reward;
