@@ -36,11 +36,13 @@ const goToReward = () => {
   Actions.reward();
 };
 const About = () => {
+  const [onMode, setIsOn] = useState(true)
+  const handleMode = (onMode) => setIsOn(!onMode)
+
   // <Switch />;
   const goToHome = () => {
     Actions.home();
   };
-  let modalon = false;
   const [courseGoals, setCourseGoals] = useState([]);
   const [isAddMode, setIsAddMode] = useState(false);
 
@@ -111,20 +113,32 @@ const About = () => {
               onAddGoal={addGoalHandler}
               onCancel={cancelGoalAdditionHandler}
             />
-            <View style={styles.card}>
-              {this.modalon ? <Text>(무)신한스포츠/레저보장보험</Text> : null}
-            </View>
+
             <View style={styles.toggle}>
               <ToggleSwitch
-                isOn={true}
+                isOn={onMode}
+                onPress={handleMode}
                 onColor="yellowgreen"
                 offColor="#595959"
                 style={styles.switch}
                 label="보험 스위치 ON/OFF"
                 labelStyle={styles.switchLabel}
-                size="large"
+                size="small"
               />
             </View>
+
+            <FlatList
+              keyExtractor={(item, index) => item.id}
+              data={courseGoals}
+              renderItem={itemData => (
+                <GoalItem
+                  id={itemData.item.id}
+                  onDelete={removeGoalHandler}
+                  title={itemData.item.value}
+                />
+              )}
+            />
+
             {/* Push 알람 설정 동의 확인 창이 나오는 함수 */}
             {/* 한번만 누르면 됨 */}
             <Button
@@ -140,17 +154,7 @@ const About = () => {
               title="Dismiss All Notifications"
               onPress={() => Notifications.dismissAllNotificationsAsync()}
             />
-            <FlatList
-              keyExtractor={(item, index) => item.id}
-              data={courseGoals}
-              renderItem={itemData => (
-                <GoalItem
-                  id={itemData.item.id}
-                  onDelete={removeGoalHandler}
-                  title={itemData.item.value}
-                />
-              )}
-            />
+
           </View>
       </Content>
 
@@ -237,7 +241,9 @@ const styles = StyleSheet.create({
     color: "blue",
     fontWeight: "bold",
     textAlign: "right",
-    marginLeft: 40
+    marginLeft: 40,
+    marginTop: 20,
+    marginBottom: 20,
   },
   switchLabel: {
     color: "dodgerblue",
