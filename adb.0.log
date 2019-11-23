@@ -34,3 +34,23 @@ adb I    81    81 main.cpp:78]
 adb I   377   377 main.cpp:78] Android Debug Bridge version 1.0.36
 adb I   377   377 main.cpp:78] Revision af05c7354fe1-android
 adb I   377   377 main.cpp:78] 
+--- adb starting (pid 78) ---
+adb I    78    78 main.cpp:78] Android Debug Bridge version 1.0.36
+adb I    78    78 main.cpp:78] Revision af05c7354fe1-android
+adb I    78    78 main.cpp:78] 
+--- adb starting (pid 466) ---
+adb I   466   466 main.cpp:78] Android Debug Bridge version 1.0.36
+adb I   466   466 main.cpp:78] Revision af05c7354fe1-android
+adb I   466   466 main.cpp:78] 
+--- adb starting (pid 78) ---
+adb I    78    78 main.cpp:78] Android Debug Bridge version 1.0.36
+adb I    78    78 main.cpp:78] Revision af05c7354fe1-android
+adb I    78    78 main.cpp:78] 
+--- adb starting (pid 79) ---
+adb I    79    79 main.cpp:78] Android Debug Bridge version 1.0.36
+adb I    79    79 main.cpp:78] Revision af05c7354fe1-android
+adb I    79    79 main.cpp:78] 
+--- adb starting (pid 79) ---
+adb I    79    79 main.cpp:78] Android Debug Bridge version 1.0.36
+adb I    79    79 main.cpp:78] Revision af05c7354fe1-android
+adb I    79    79 main.cpp:78] 

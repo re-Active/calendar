@@ -3,6 +3,7 @@ import { Actions } from "react-native-router-flux";
 import { Text, View, StyleSheet, Alert, Button } from "react-native";
 import { Agenda } from "react-native-calendars";
 import {
+  // DeckSwiper,
   Container,
   Header,
   Content,
@@ -11,48 +12,38 @@ import {
   Button as Btn,
   Icon,
   Badge,
+  Image,
   Left,
   Right,
+  Card,
+  CardItem,
+  CheckBox
 } from "native-base";
-import Drawer from 'react-native-drawer'
 
-class Application extends Component {  
-  closeControlPanel = () => {
-    this._drawer.close()
-  };
-  openControlPanel = () => {
-    this._drawer.open()
-  };
-  render () {
-    return (
-      <Drawer
-        ref={(ref) => this._drawer = ref}
-        content={<ControlPanel />}
-        >
-        <MainView />
-      </Drawer>
-    )
-  }
-}
 const goToAbout = () => {
   Actions.about();
 };
-
+const goToReward = () => {
+  Actions.reward()
+}
+const goToHome = () => {
+  Actions.home();
+};
 export default class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
       items: {
-        "2017-06-14": [
+        "2020-06-14": [
           {
             height: 50,
-            name: "0614"
+            name: "밥먹기"
           }
         ],
-        "2017-06-17": [
+        "2020-06-17": [
           {
             height: 50,
-            name: "0617"
+            name: "마라톤경기"
           }
         ]
       },
@@ -68,39 +59,49 @@ export default class Home extends Component {
   render() {
     return (
       <Container>
-        <Header>
-        <Left><Btn><Icon name="settings" /></Btn></Left>
-          <Text>전체 일정보기</Text>
+        <Header style={styles.header}>
+          {/* <Left>
+          </Left> */}
+          <Text style={styles.headerText}>Plan IT</Text>
           <Right>
-            <Btn><Icon name="search" /></Btn>
-            <Btn><Icon name="menu" /></Btn>
-            </Right>
-        </Header>
-       {/* <Content> */}
-          <Agenda
-            items={this.state.items}
-            onDayPress={this.onDayPress.bind(this)}
-            // loadItemsForMonth={this.loadItems.bind(this)}
-            selected={"2017-06-16"}
-            renderItem={this.renderItem.bind(this)}
-            renderEmptyData={this.renderEmptyData.bind(this)}
-            rowHasChanged={this.rowHasChanged.bind(this)}
-          />
-        {/* </Content> */}
-        <Footer class="footer" backgroundColor="blue">
-        <FooterTab>
-            <Btn badge vertical>
-              <Badge><Text>2</Text></Badge>
-              <Icon name="home" />
-              <Text>Apps</Text>
+            <Btn style={styles.btn}>
+              <Icon name="person" />
             </Btn>
-            <Btn active vertical>
-              <Icon name="home"/>
-              <Text>홈</Text>
+            <Btn style={styles.btn}>
+              <Icon name="menu" />
+            </Btn>
+          </Right>
+        </Header>
+
+        <Card style={styles.card}>
+          <CardItem header>
+
+          </CardItem>
+        <Text style={styles.content_text1}>신영훈님의</Text> 
+        <Text style={styles.content_text2}>일상을 응원합니다:)</Text>
+        </Card>
+
+        <Agenda
+          items={this.state.items}
+          onDayPress={this.onDayPress.bind(this)}
+          selected={"2020-06-16"}
+          renderItem={this.renderItem.bind(this)}
+          renderEmptyData={this.renderEmptyData.bind(this)}
+          rowHasChanged={this.rowHasChanged.bind(this)}
+        />
+        <Footer>
+          <FooterTab style={styles.footer}>
+            <Btn vertical onPress={ goToReward }>
+              <Icon name="ribbon" />
+              <Text style={styles.footer_text}>리워드샵 </Text>
+            </Btn>
+            <Btn active vertical style={styles.btn} onPress={ goToHome }>
+              <Icon name="home" />
+              <Text style={styles.footer_text}>홈</Text>
             </Btn>
             <Btn vertical>
-              <Icon name="people" />
-              <Text>커뮤니티</Text>
+              <Icon name="chatbubbles" />
+              <Text style={styles.footer_text}>커뮤니티</Text>
             </Btn>
           </FooterTab>
         </Footer>
@@ -114,11 +115,14 @@ export default class Home extends Component {
   }
 
   renderItem(item) {
-    // console.log(item)
     return (
       <View style={[styles.item, { height: item.height }]}>
         <Text>{item.name}</Text>
-        <Button title="일정 수정" onPress={goToAbout} />
+        <Button
+          title="일정 수정"
+          onPress={goToAbout}
+          style={styles.addAndUpdate}
+        />
       </View>
     );
   }
@@ -126,7 +130,11 @@ export default class Home extends Component {
   renderEmptyData() {
     return (
       <View style={styles.emptyDate}>
-        <Button title="일정 추가" onPress={goToAbout} />
+        <Button
+          title="일정 추가"
+          onPress={goToAbout}
+          style={styles.addAndUpdate}
+        />
       </View>
     );
   }
@@ -138,7 +146,7 @@ export default class Home extends Component {
 
 const styles = StyleSheet.create({
   item: {
-    backgroundColor: "lightgray",
+    backgroundColor: "aliceblue",
     flex: 1,
     borderRadius: 5,
     padding: 10,
@@ -150,8 +158,51 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 30
   },
-  Container: {
-    backgroundColor: 'red',
+  card: {
+    marginTop: 10,
+    marginLeft: 20,
+    marginRight: 20,
+    backgroundColor: "whitesmoke"
+  },
+  addAndUpdate: {
+    textAlign: "left"
+  },
+  header: {
+    backgroundColor: "dodgerblue",
+    textAlign: "auto"
+  },
+  headerText: {
+    color: "white",
+    fontWeight: "900",
+    fontSize: 20,
+    // marginRight: 250,
+    textAlignVertical: "center",
+    textAlign: "left"
+  },
+  content_text1: {
+    color: "#CC9933",
+    textAlign: "left",
+    fontWeight: "bold",
+    fontSize: 25,
+    marginLeft: 27,
+    marginTop: 80
+  },
+  content_text2: {
+    color: "#CC9933",
+    textAlign: "left",
+    fontWeight: "bold",
+    fontSize: 25,
+    marginLeft: 27,
+    marginBottom: 80
+  },
+  footer: {
+    backgroundColor: "dodgerblue"
+  },
+  btn: {
+    backgroundColor: "dodgerblue"
+  },
+  footer_text: {
+    color: "white",
+    textShadowColor: "black"
   }
-
 });
