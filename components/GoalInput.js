@@ -1,78 +1,68 @@
-import React, {useState} from 'react'
-import {View, TextInput, Button, StyleSheet, Modal} from 'react-native'
-
+import React, { useState } from "react";
+import { View, TextInput, Button, StyleSheet, Modal } from "react-native";
+import { Card } from "native-base";
 
 const GoalInput = props => {
+  const [enteredGoal, setEnteredGoal] = useState("");
+  const goalInputHandler = enteredText => {
+    setEnteredGoal(enteredText);
+  };
+  const addGoalHandler = () => {
+    props.onAddGoal(enteredGoal); // bind할 필요 없음
+    setEnteredGoal(""); // 글자 없어지게
+  };
+  return (
+    <View style={styles.inputContainer}>
+      <TextInput
+        placeholder="일정을 등록해 주세요 :)"
+        style={styles.input}
+        onChangeText={goalInputHandler}
+        value={enteredGoal}
+      />
 
-    // id = 0
-    // state = {
-    //   information : [{
-    //     id:1,
-    //     name: '신지영'
-    //   }]
-    // }
-    // const handleState = (data) => {
-    //   const {information} = this.state
-    //   this.setState({
-    //     information: information.concat({id:this.id++, ...data})
-    //   })
-    //   console.log(this.state)
-    // } 
-
-    const [enteredGoal, setEnteredGoal] = useState('')
-    const goalInputHandler = (enteredText) => {
-        setEnteredGoal(enteredText)
-      }
-    const addGoalHandler = () => {
-      props.onAddGoal(enteredGoal) // bind할 필요 없음
-      setEnteredGoal('') // 글자 없어지게
-      // handleTemp(enteredGoal)
-      // handleState(enteredGoal)
-      console.log(enteredGoal)
-      console.log(temp)
-    }
-    return (
-
-        <View style={styles.inputContainer}> 
-        {/* 이게 아니었으면 열단위로 나왔을 것 */}
-        <TextInput 
-        placeholder="일정을 등록해 주세요" 
-        style={styles.input}  
-        // 이벤트 발생 이야기 하는 듯
-        onChangeText={goalInputHandler} 
-        value={enteredGoal}/>
-        {/* 함수여도 () 안붙이는 것 주의 */}
-
-        <View style={styles.buttonContainer}>
-          <View style={styles.button}>
-            <Button title="CANCEL" color="red" onPress={props.onCancel}/>
-          </View>
-          <View style={styles.button}>
-            <Button title="ADD" onPress={addGoalHandler} />
-          </View>
+      <View style={styles.buttonContainer}>
+        <View style={styles.button}>
+          <Button
+            title="작성취소"
+            color="#595959"
+            borderRadius="40"
+            onPress={props.onCancel}
+          />
         </View>
+        <View style={styles.button}>
+          <Button title="일정추가" borderRadius="40" onPress={addGoalHandler} />
         </View>
-
-
-    )}
+      </View>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
+  input: {
+    borderColor: "dodgerblue",
+    borderRadius: 10,
+    borderWidth: 1.5,
+    alignContent: "center",
+    marginLeft: 10,
+    marginTop: 10,
+    width: 350,
+    padding: 10
+  },
+  buttonContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    width: "100%"
+  },
+  button: {
+    marginTop: 5,
+    borderRadius: 40,
+    marginLeft: 5,
+    marginRight: 5,
+    width: "45%"
+  },
+  inputContainer: {
+    justifyContent: "center"
+  }
+});
 
-    input: { 
-      borderColor: 'black', 
-      borderWidth: 1, 
-      padding: 10 },
-    buttonContainer: {
-      flexDirection: 'row',
-      justifyContent: 'space-around',
-      width: '100%'
-    },
-    button: {
-      alignContent: 'center',
-      marginTop: 10,
-      width: '40%'
-    },
-
-})
-
-export default GoalInput
+export default GoalInput;

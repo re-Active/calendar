@@ -3,7 +3,6 @@ import { Actions } from "react-native-router-flux";
 import { Text, View, StyleSheet, Alert, Button } from "react-native";
 import { Agenda } from "react-native-calendars";
 import {
-  // DeckSwiper,
   Container,
   Header,
   Content,
@@ -26,9 +25,7 @@ const goToAbout = () => {
 const goToReward = () => {
   Actions.reward()
 }
-const goToHome = () => {
-  Actions.home();
-};
+
 export default class Home extends Component {
   constructor(props) {
     super(props);
@@ -60,9 +57,7 @@ export default class Home extends Component {
     return (
       <Container>
         <Header style={styles.header}>
-          {/* <Left>
-          </Left> */}
-          <Text style={styles.headerText}>Plan IT</Text>
+          <Text style={styles.headerText}>Plan-IT</Text>
           <Right>
             <Btn style={styles.btn}>
               <Icon name="person" />
@@ -74,9 +69,6 @@ export default class Home extends Component {
         </Header>
 
         <Card style={styles.card}>
-          <CardItem header>
-
-          </CardItem>
         <Text style={styles.content_text1}>신영훈님의</Text> 
         <Text style={styles.content_text2}>일상을 응원합니다:)</Text>
         </Card>
@@ -95,7 +87,7 @@ export default class Home extends Component {
               <Icon name="ribbon" />
               <Text style={styles.footer_text}>리워드샵 </Text>
             </Btn>
-            <Btn active vertical style={styles.btn} onPress={ goToHome }>
+            <Btn active vertical style={styles.btn}>
               <Icon name="home" />
               <Text style={styles.footer_text}>홈</Text>
             </Btn>
@@ -117,11 +109,11 @@ export default class Home extends Component {
   renderItem(item) {
     return (
       <View style={[styles.item, { height: item.height }]}>
-        <Text>{item.name}</Text>
+        <Text marginBottom="10" >{item.name}</Text>
         <Button
           title="일정 수정"
           onPress={goToAbout}
-          style={styles.addAndUpdate}
+          width="50"
         />
       </View>
     );
@@ -159,13 +151,11 @@ const styles = StyleSheet.create({
     paddingTop: 30
   },
   card: {
+    // rounded: true,
     marginTop: 10,
     marginLeft: 20,
     marginRight: 20,
-    backgroundColor: "whitesmoke"
-  },
-  addAndUpdate: {
-    textAlign: "left"
+    backgroundColor: "snow",
   },
   header: {
     backgroundColor: "dodgerblue",

@@ -12,17 +12,15 @@ const Routes = () => (
         key="home"
         component={Home}
         initial={true}
-        style={styles.cheerful}
+        title="홈"
       />
-      <Scene key="about" component={About} style={styles.cheerful} />
-      <Scene key="reward" component={Reward} style={styles.cheerful} />
+      <Scene key="about" component={About} style={styles.cheerful} title="일정 추가/삭제"/>
+      <Scene key="reward" component={Reward} style={styles.cheerful} title="리워드샵"/>
     </Scene>
   </Router>
 );
 
 const styles = StyleSheet.create({
-   cheerful: {
-      backgroundColor: 'black'
-   }
+
 });
 export default Routes;
