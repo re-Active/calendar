@@ -1,15 +1,16 @@
 import React, { Component } from "react";
-import { TouchableOpacity, Text, View, StyleSheet } from "react-native";
+import { TouchableOpacity, Text, View, StyleSheet, Image } from "react-native";
 import { Actions } from "react-native-router-flux";
 import {
   Container,
   Content,
   Footer,
   FooterTab,
+  DeckSwiper,
   Button,
   Icon,
   Header,
-  Badge,
+  Body,
   Left,
   Right,
   Card,
@@ -21,9 +22,6 @@ const Reward = () => {
     Actions.home();
   };
   return (
-    // <TouchableOpacity style = {{ margin: 128 }} onPress = {goToHome}>
-    //    <Text>리워드 페이지</Text>
-    // </TouchableOpacity>
     <Container>
       <Header style={styles.header}>
         <Text style={styles.headerTextContent}>Plan-IT</Text>
@@ -42,6 +40,7 @@ const Reward = () => {
           <Text style={styles.txt1}>신영훈님의 리워드는</Text>
           <Text style={styles.txt2}>30000 point입니다</Text>
         </Card>
+      
       </Content>
 
       <Footer>

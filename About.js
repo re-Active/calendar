@@ -106,12 +106,24 @@ const About = () => {
       <Content>
           <View style={styles.screen}>
             <Card>
-              <Text style={styles.txt1}>신영훈님</Text>
-              <Text style={styles.txt2}>아직 일정이 없네요!</Text>
+              <Text style={styles.txt1}>신영훈님의</Text>
+              <Text style={styles.txt2}>일정을 관리해보세요!</Text>
             </Card>
             <GoalInput
               onAddGoal={addGoalHandler}
               onCancel={cancelGoalAdditionHandler}
+            />
+
+            <FlatList
+              keyExtractor={(item, index) => item.id}
+              data={courseGoals}
+              renderItem={itemData => (
+                <GoalItem
+                  id={itemData.item.id}
+                  onDelete={removeGoalHandler}
+                  title={itemData.item.value}
+                />            
+              )}
             />
 
             <View style={styles.toggle}>
@@ -127,34 +139,21 @@ const About = () => {
               />
             </View>
 
-            <FlatList
-              keyExtractor={(item, index) => item.id}
-              data={courseGoals}
-              renderItem={itemData => (
-                <GoalItem
-                  id={itemData.item.id}
-                  onDelete={removeGoalHandler}
-                  title={itemData.item.value}
-                />
-              )}
-            />
-
             {/* Push 알람 설정 동의 확인 창이 나오는 함수 */}
             {/* 한번만 누르면 됨 */}
-            <Button
-              title="Please accept Notifications Permissions"
+
+            {/* <Text>Push 알람 설정</Text> */}
+            <View marginTop={30}>
+            <Button style={styles.pushbtn1}
+              title="Push 알람 설정에 동의하시나요?"
               onPress={() => this.askPermissions()}
             />
             {/* 버튼 누르면 바로 Push 알람 옵니다. */}
-            <Button
-              title="Send Notification immediately"
+            <Button style={styles.pushbtn2}
+              title="바로 Push 알람 받아보기"
               onPress={() => this.sendNotificationImmediately()}
             />
-            <Button
-              title="Dismiss All Notifications"
-              onPress={() => Notifications.dismissAllNotificationsAsync()}
-            />
-
+            </View>
           </View>
       </Content>
 
@@ -162,7 +161,7 @@ const About = () => {
         <FooterTab style={styles.footer}>
           <Btn vertical onPress={goToReward}>
             <Icon name="ribbon" />
-            <Text style={styles.footer_text}>리워드샵 </Text>
+            <Text style={styles.footer_text}>리워드샵</Text>
           </Btn>
           <Btn active vertical style={styles.btn} onPress={goToHome}>
             <Icon name="home" />
@@ -190,7 +189,7 @@ const styles = StyleSheet.create({
     textAlignVertical: "center"
   },
   screen: {
-    padding: 20
+    padding: 20,
   },
   txt1: {
     color: "darkslategray",
@@ -235,7 +234,9 @@ const styles = StyleSheet.create({
     textShadowColor: "black"
   },
   toggle: {
-    marginStart: 145
+    marginTop: 10,
+    marginStart: 175,
+    marginBottom: 10,
   },
   switch: {
     color: "blue",
@@ -248,6 +249,12 @@ const styles = StyleSheet.create({
   switchLabel: {
     color: "dodgerblue",
     fontWeight: "bold",
-  }
+  },
+  pushbtn1 : {
+    marginTop: 30,
+    marginBottom: 10,
+    width: "97%",
+    // color: "blue"
+  },
 });
 export default About;

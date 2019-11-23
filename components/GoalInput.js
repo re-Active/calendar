@@ -13,56 +13,56 @@ const GoalInput = props => {
   };
   return (
     <View style={styles.inputContainer}>
-      <TextInput
-        placeholder="일정을 등록해 주세요 :)"
-        style={styles.input}
-        onChangeText={goalInputHandler}
-        value={enteredGoal}
-      />
+    <TextInput
+      placeholder="일정을 등록해 주세요 :)"
+      style={styles.input}
+      onChangeText={goalInputHandler}
+      value={enteredGoal}
+    />
 
-      <View style={styles.buttonContainer}>
-        <View style={styles.button}>
-          <Button
-            title="작성취소"
-            color="#595959"
-            borderRadius="40"
-            onPress={props.onCancel}
-          />
-        </View>
-        <View style={styles.button}>
-          <Button title="일정추가" borderRadius="40" onPress={addGoalHandler} />
-        </View>
+    <View style={styles.buttonContainer}>
+      <View style={styles.button}>
+        <Button
+          title="작성취소"
+          color="#595959"
+          borderRadius="40"
+          onPress={props.onCancel}
+        />
+      </View>
+      <View style={styles.button}>
+        <Button title="일정추가" borderRadius="40" onPress={addGoalHandler} />
       </View>
     </View>
-  );
+  </View>
+);
 };
 
 const styles = StyleSheet.create({
-  input: {
-    borderColor: "dodgerblue",
-    borderRadius: 10,
-    borderWidth: 1.5,
-    alignContent: "center",
-    marginLeft: 10,
-    marginTop: 10,
-    width: 300,
-    padding: 10
-  },
-  buttonContainer: {
-    flexDirection: "row",
-    justifyContent: "center",
-    width: "100%"
-  },
-  button: {
-    marginTop: 5,
-    borderRadius: 40,
-    marginLeft: 5,
-    marginRight: 5,
-    width: "45%"
-  },
-  inputContainer: {
-    justifyContent: "center"
-  }
+input: {
+  borderColor: "dodgerblue",
+  borderRadius: 10,
+  borderWidth: 1.5,
+  alignContent: "center",
+  marginLeft: 10,
+  marginTop: 10,
+  width: "95%",
+  padding: 10
+},
+buttonContainer: {
+  flexDirection: "row",
+  justifyContent: "center",
+  width: "100%"
+},
+button: {
+  marginTop: 5,
+  borderRadius: 40,
+  marginLeft: 5,
+  marginRight: 5,
+  width: "45%"
+},
+inputContainer: {
+  justifyContent: "center"
+}
 });
 
 export default GoalInput;
