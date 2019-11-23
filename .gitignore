@@ -10,4 +10,5 @@ web-build/
 web-report/
 
 # macOS
-.DS_Store
+# .DS_Store
+metro-cache/
